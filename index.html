@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>اگه گفتی چی هستم؟</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;700;800&family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;min-height:100vh;font-family:'Baloo Bhaijaan 2','Vazirmatn',Tahoma,sans-serif;text-align:center}
+/* ================= پس‌زمینه جنگل متحرک ================= */
+#bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:linear-gradient(#6ec6ff,#bdefff 55%,#d9f7d9);transition:background 1.5s;text-align:right}
+body.stage2 #bg{background:linear-gradient(#5c6bc0,#ff8a65 55%,#ffe0b2)}
+.sun{position:absolute;top:6%;left:7%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff59d,#ffee58 45%,#fbc02d);box-shadow:0 0 60px 25px rgba(255,235,59,.55);transition:all 1.5s}
+.sun::after{content:'';position:absolute;inset:-28px;border-radius:50%;background:conic-gradient(rgba(255,235,59,.5) 0 10deg,transparent 10deg 30deg,rgba(255,235,59,.5) 30deg 40deg,transparent 40deg 60deg,rgba(255,235,59,.5) 60deg 70deg,transparent 70deg 90deg,rgba(255,235,59,.5) 90deg 100deg,transparent 100deg 120deg,rgba(255,235,59,.5) 120deg 130deg,transparent 130deg 150deg,rgba(255,235,59,.5) 150deg 160deg,transparent 160deg 180deg,rgba(255,235,59,.5) 180deg 190deg,transparent 190deg 210deg,rgba(255,235,59,.5) 210deg 220deg,transparent 220deg 240deg,rgba(255,235,59,.5) 240deg 250deg,transparent 250deg 270deg,rgba(255,235,59,.5) 270deg 280deg,transparent 280deg 300deg,rgba(255,235,59,.5) 300deg 310deg,transparent 310deg 330deg,rgba(255,235,59,.5) 330deg 340deg,transparent 340deg 360deg);animation:spin 14s linear infinite}
+body.stage2 .sun{top:52%;left:12%;width:150px;height:150px;box-shadow:0 0 90px 40px rgba(255,167,38,.6)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cloud{position:absolute;width:110px;height:36px;background:#fff;border-radius:30px;opacity:.95;animation:drift linear infinite}
+.cloud::before,.cloud::after{content:'';position:absolute;background:#fff;border-radius:50%}
+.cloud::before{width:46px;height:46px;top:-20px;left:18px}
+.cloud::after{width:34px;height:34px;top:-14px;right:20px}
+.c1{top:10%;animation-duration:38s}
+.c2{top:22%;transform:scale(.75);animation-duration:50s;animation-delay:-20s}
+.c3{top:5%;transform:scale(1.2);animation-duration:60s;animation-delay:-40s}
+body.stage2 .cloud{background:#ffd9c9}
+body.stage2 .cloud::before,body.stage2 .cloud::after{background:#ffd9c9}
+@keyframes drift{from{right:-20%}to{right:120%}}
+.hill{position:absolute;border-radius:50%;transition:background 1.5s}
+.h1{width:140%;height:60%;bottom:-38%;right:-30%;background:#a5d6a7}
+.h2{width:140%;height:60%;bottom:-42%;left:-35%;background:#81c784}
+body.stage2 .h1{background:#7e9c6a}
+body.stage2 .h2{background:#5f8a52}
+.tree{position:absolute;bottom:4%;width:70px;height:120px;transition:transform 1.5s,filter 1.5s}
+.tree::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:16px;height:48px;background:#8d6e63;border-radius:6px}
+.tree::after{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:74px;height:84px;background:radial-gradient(circle at 35% 30%,#81c784,#388e3c);border-radius:50% 50% 45% 45%;animation:sway 5s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:translateX(-50%) rotate(-2deg)}50%{transform:translateX(-50%) rotate(2deg)}}
+.t1{right:4%}.t2{right:20%;transform:scale(.8);bottom:6%}.t3{left:6%;transform:scale(1.1)}.t4{left:26%;transform:scale(.7);bottom:7%}.t5{right:44%;transform:scale(.9);bottom:5%}
+body.stage2 .tree{transform:scale(1.5);filter:brightness(.75)}
+body.stage2 .t2,body.stage2 .t4{transform:scale(1.2)}
+.bfly{position:absolute;font-size:26px;animation:fly 16s ease-in-out infinite}
+.f1{top:30%;right:10%}.f2{top:45%;right:60%;animation-delay:-6s;font-size:20px}
+@keyframes fly{0%{transform:translate(0,0) rotate(10deg)}25%{transform:translate(-60px,-40px) rotate(-10deg)}50%{transform:translate(-120px,10px) rotate(10deg)}75%{transform:translate(-40px,50px) rotate(-8deg)}100%{transform:translate(0,0) rotate(10deg)}}
+.firefly{position:absolute;font-size:16px;opacity:0;transition:opacity 1s}
+body.stage2 .firefly{opacity:1;animation:tw 2.4s ease-in-out infinite}
+@keyframes tw{0%,100%{transform:translateY(0);opacity:.2}50%{transform:translateY(-14px);opacity:1}}
+.ff1{top:40%;right:15%}.ff2{top:55%;right:70%;animation-delay:-1s}.ff3{top:35%;right:50%;animation-delay:-1.8s}
+/* ================= صفحه‌ها ================= */
+.screen{position:relative;z-index:10;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;overflow:auto;text-align:center}
+.hidden{display:none!important}
+.box{background:rgba(255,255,255,.92);border-radius:18px;box-shadow:0 8px 20px rgba(0,0,0,.18);text-align:center}
+.bism{font-size:1rem;padding:6px 22px;font-weight:700;color:#1b5e20}
+.title{font-weight:800;font-size:clamp(2.4rem,10vw,4rem);color:#fff;background:linear-gradient(135deg,#ff7043,#ec407a,#ab47bc);padding:.15em .6em;border-radius:26px;box-shadow:0 10px 0 rgba(0,0,0,.15),0 16px 30px rgba(0,0,0,.3);margin:14px 0;text-shadow:0 2px 4px rgba(0,0,0,.3);text-align:center}
+.panel{padding:22px;width:min(92vw,420px);display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
+.panel label{font-weight:700;font-size:1.4rem;color:#37474f;text-align:center;display:block}
+.panel input{font-family:'Baloo Bhaijaan 2','Vazirmatn',Tahoma,sans-serif;font-size:1.2rem;text-align:center;padding:10px;border-radius:14px;border:3px solid #4fc3f7;outline:none;width:80%}
+.designer{font-size:.85rem;padding:4px 14px;color:#455a64;background:rgba(255,255,255,.75)}
+/* ================= صفحه راهنما (بعد از شروع) ================= */
+#helpBox{background:#fff;border:6px dashed #ab47bc;border-radius:22px;width:min(94vw,560px);padding:26px 20px;text-align:center;
+font-weight:700;font-size:clamp(1.3rem,6vw,1.8rem);color:#37474f;line-height:2.1;
+box-shadow:0 12px 26px rgba(0,0,0,.25)}
+#helpBox .sign{display:block;font-weight:800;font-size:2.4em;color:#e91e63;line-height:1.6}
+/* ================= دکمه‌های سه‌بعدی ================= */
+.btn3d{font-family:'Baloo Bhaijaan 2','Vazirmatn',Tahoma,sans-serif;font-weight:700;font-size:1.35rem;color:#fff;border:none;border-radius:18px;cursor:pointer;padding:.5em .8em;text-align:center;
+background:linear-gradient(180deg,var(--lt),var(--md));
+box-shadow:0 6px 0 var(--dk),0 12px 18px rgba(0,0,0,.25),inset 0 2px 0 rgba(255,255,255,.4);
+text-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
+.btn3d:active{transform:translateY(4px);box-shadow:0 2px 0 var(--dk),0 6px 10px rgba(0,0,0,.2)}
+.btn3d.sel{transform:translateY(5px);box-shadow:0 1px 0 var(--dk),0 0 0 4px #fff,0 0 0 7px var(--md)}
+.btn3d.good{--lt:#66bb6a;--md:#43a047;--dk:#1b5e20}
+.btn3d.bad{--lt:#ef5350;--md:#e53935;--dk:#b71c1c}
+.btn3d:disabled{opacity:.45;cursor:not-allowed}
+.p-aval{--lt:#4fc3f7;--md:#1e88e5;--dk:#0d47a1}
+.p-vasat{--lt:#ffe082;--md:#fbc02d;--dk:#f57f17;color:#5d4037;text-shadow:none}
+.p-akhar{--lt:#ffb74d;--md:#fb8c00;--dk:#e65100}
+.p-check{--lt:#ba68c8;--md:#8e24aa;--dk:#4a148c;font-size:1.5rem}
+.p-next{--lt:#81c784;--md:#43a047;--dk:#1b5e20;font-size:1.5rem}
+.p-start{--lt:#f06292;--md:#e91e63;--dk:#880e4f;font-size:1.7rem}
+/* ================= HUD بازی ================= */
+#hud{width:min(96vw,560px);display:flex;flex-direction:column;gap:6px;align-items:center;margin-bottom:8px;text-align:center}
+#pbar{width:100%;height:9px;background:rgba(255,255,255,.55);border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+#pfill{height:100%;width:0%;border-radius:10px;background:linear-gradient(90deg,#f44336,#ff9800,#ffeb3b,#4caf50,#2196f3,#9c27b0);transition:width .5s}
+#lights{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;background:rgba(38,50,56,.35);padding:5px 10px;border-radius:14px}
+.light{width:13px;height:13px;border-radius:50%;background:#cfd8dc;border:2px solid #78909c}
+.light.g{background:#4caf50;border-color:#1b5e20;box-shadow:0 0 6px #4caf50}
+.light.r{background:#e53935;border-color:#b71c1c;box-shadow:0 0 6px #e53935}
+#stageBadge{font-weight:700;font-size:1rem;color:#fff;background:rgba(0,0,0,.3);padding:2px 16px;border-radius:12px;text-align:center}
+/* ================= کارت سؤال ================= */
+#card{background:#fff;border:7px solid #ff7043;border-radius:26px;box-shadow:0 14px 30px rgba(0,0,0,.25);padding:16px;width:min(94vw,420px);display:flex;flex-direction:column;align-items:center;gap:10px;transition:border-color .5s;text-align:center}
+#imgBox{height:min(38vh,300px);width:100%;display:flex;align-items:center;justify-content:center;position:relative}
+#imgBox img{max-height:100%;max-width:100%;object-fit:contain;filter:drop-shadow(0 6px 8px rgba(0,0,0,.2))}
+#loader{position:absolute;font-size:2.4rem;animation:spin 1s linear infinite}
+/* کلمه با فونت بالو — روش دو لایه برای قرمز شدن فقط «ب» */
+#word{font-weight:800;font-size:clamp(3rem,15vw,4.8rem);color:#212121;line-height:1.5;position:relative;display:inline-block;white-space:nowrap;text-align:center}
+#word .l1{position:relative}
+#word .l2{position:absolute;top:0;right:0;left:0;display:none;white-space:nowrap;color:transparent;pointer-events:none}
+#word .l2 .r{color:#e53935}
+#word.reveal .l2{display:block}
+#posRow{display:flex;gap:10px;justify-content:center;width:100%}
+#posRow .btn3d{flex:1;max-width:110px}
+/* ================= افکت‌ها ================= */
+#flash{position:fixed;inset:0;background:#e53935;opacity:0;pointer-events:none;z-index:50;transition:opacity .25s}
+#flash.on{opacity:.45}
+.flower{position:fixed;top:-6vh;z-index:60;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(360deg)}}
+#countOverlay{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.55);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center}
+#countNum{font-weight:800;font-size:8rem;color:#ffee58;text-shadow:0 0 30px #ff9800;animation:pop 1s ease infinite}
+#countTxt{font-weight:700;font-size:2rem;color:#fff}
+@keyframes pop{0%{transform:scale(.4)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+#endEmoji{font-size:5rem}
+#endTitle{font-weight:800;font-size:2.2rem;color:#2e7d32;margin:0}
+#endScore{font-weight:800;font-size:1.6rem;color:#37474f}
+#endMsg{font-size:1.1rem;color:#546e7a;font-weight:700}
+</style>
+</head>
+<body>
+<div id="bg">
+  <div class="sun"></div>
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+  <div class="hill h1"></div><div class="hill h2"></div>
+  <div class="tree t1"></div><div class="tree t2"></div><div class="tree t3"></div><div class="tree t4"></div><div class="tree t5"></div>
+  <span class="bfly f1">🦋</span><span class="bfly f2">🦋</span>
+  <span class="firefly ff1">✨</span><span class="firefly ff2">✨</span><span class="firefly ff3">✨</span>
+</div>
+
+<!-- صفحه شروع -->
+<div class="screen" id="startScreen">
+  <div class="box bism">به نام خدا</div>
+  <div class="title">اگه گفتی چی هستم؟</div>
+  <div class="box panel">
+    <label for="heroName">اسم قهرمان بازی رو بنویس:</label>
+    <input id="heroName" maxlength="20" placeholder="مثلاً: زهرا">
+    <button class="btn3d p-start" id="startBtn">شروع بازی 🚀</button>
+  </div>
+  <div class="box designer">طراح: خانم حسنیان</div>
+</div>
+
+<!-- صفحه راهنما: بعد از شروع، قبل از سؤال‌ها -->
+<div class="screen hidden" id="helpScreen">
+  <div id="helpBox">
+    عزیزم خوب نگاه کن ببین نشانه
+    <span class="sign">بـ &nbsp; ب</span>
+    در کجای کلمه آمده است؟
+    <br><br>
+    <button class="btn3d p-start" id="helpBtn">شروع کنیم! 🌟</button>
+  </div>
+</div>
+
+<!-- صفحه بازی -->
+<div class="screen hidden" id="gameScreen">
+  <div id="hud">
+    <div id="pbar"><div id="pfill"></div></div>
+    <div id="lights"></div>
+    <div id="stageBadge">مرحله ۱</div>
+  </div>
+  <div id="card">
+    <div id="imgBox"><span id="loader">⏳</span><img id="qImg" alt="تصویر"></div>
+    <div id="word"></div>
+    <div id="posRow">
+      <button class="btn3d p-aval"  data-pos="اول">اول</button>
+      <button class="btn3d p-vasat" data-pos="وسط">وسط</button>
+      <button class="btn3d p-akhar" data-pos="آخر">آخر</button>
+    </div>
+    <button class="btn3d p-check" id="checkBtn" disabled>بررسی جواب ✔️</button>
+    <button class="btn3d p-next hidden" id="nextBtn">سؤال بعدی ⬅️</button>
+  </div>
+</div>
+
+<!-- صفحه پایان -->
+<div class="screen hidden" id="endScreen">
+  <div class="box panel">
+    <div id="endEmoji">🏆</div>
+    <h2 id="endTitle"></h2>
+    <div id="endScore"></div>
+    <div id="endMsg"></div>
+    <button class="btn3d p-start" id="againBtn">دوباره بازی 🔄</button>
+  </div>
+  <div class="box designer">طراح: خانم حسنیان</div>
+</div>
+
+<div id="flash"></div>
+<div id="countOverlay" class="hidden"><div id="countTxt">آماده باش... مرحله ۲!</div><div id="countNum">۳</div></div>
+
+<script>
+/* ---------- داده‌ها ---------- */
+const RAW='https://raw.githubusercontent.com/fatemehasanianpour-spec/bazi.dowom.be/main/';
+const APPLE='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><ellipse cx="100" cy="122" rx="72" ry="66" fill="#e53935"/><ellipse cx="76" cy="98" rx="18" ry="26" fill="#ff8a80" opacity=".6"/><rect x="96" y="38" width="9" height="32" rx="4" fill="#795548"/><path d="M105 52 q32 -20 46 6 q-28 16 -46 -6" fill="#66bb6a"/><circle cx="80" cy="116" r="7" fill="#4e342e"/><circle cx="122" cy="116" r="7" fill="#4e342e"/><path d="M80 140 q21 17 42 0" stroke="#4e342e" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="66" cy="134" r="8" fill="#ff8a80" opacity=".7"/><circle cx="136" cy="134" r="8" fill="#ff8a80" opacity=".7"/></svg>`);
+const FALLBACK='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="70" font-size="70">⭐</text></svg>`);
+const STAGES=[
+ {name:'مرحله ۱',words:[
+  {w:'باد',file:'bad.jpg',ans:['اول']},{w:'برگ',file:'barkh.jpg',ans:['اول']},{w:'برف',file:'barf.jpg',ans:['اول']},
+  {w:'بوس',file:'bos.jpg',ans:['اول']},{w:'بو',file:'bo.jpg',ans:['اول']},{w:'بز',file:'boz.jpg',ans:['اول']},
+  {w:'آب\u0640ی',file:'ab.jpg',ans:['وسط']},{w:'ابر',file:'abr.jpg',ans:['وسط']},{w:'سبد',file:'sabad.jpg',ans:['وسط']},
+  {w:'سیب',file:'sib.jpg',fb:APPLE,ans:['آخر']},{w:'تاب',file:'tab.jpg',ans:['آخر']},{w:'چوب',file:'ghob.jpg',ans:['آخر']},
+  {w:'قلب',file:'galb.jpg',ans:['آخر']},{w:'بابا',file:'baba.jpg',ans:['اول','وسط']},{w:'ببر',file:'babr.jpg',ans:['اول','وسط']}
+ ]},
+ {name:'مرحله ۲',words:[
+  {w:'باران',file:'baran.jpg',ans:['اول']},{w:'بنفش',file:'banafsh.jpg',ans:['اول']},{w:'بادکنک',file:'badkonak.jpg',ans:['اول']},
+  {w:'بادام',file:'badam.jpg',ans:['اول']},{w:'بازی',file:'bazi.jpg',ans:['اول']},{w:'بهار',file:'bahar.jpg',ans:['اول']},
+  {w:'آلبالو',file:'albalo.jpg',ans:['وسط']},{w:'آدم برفی',file:'adambarfi.jpg',ans:['وسط']},{w:'گربه',file:'ghorbe.jpg',ans:['وسط']},
+  {w:'فوتبال',file:'fotbal.jpg',ans:['وسط']},{w:'جوراب',file:'jorab.jpg',ans:['آخر']},{w:'کتاب',file:'ketab.jpg',ans:['آخر']},
+  {w:'خواب',file:'khab.jpg',ans:['آخر']},{w:'آفتاب',file:'aftab.jpg',ans:['آخر']},{w:'بادبادک',file:'badbadak.jpg',ans:['اول','وسط']}
+ ]}
+];
+const TOTAL=STAGES[0].words.length+STAGES[1].words.length;
+const PALETTE=['#ff5252','#ff9800','#ffc107','#4caf50','#2196f3','#9c27b0','#e91e63','#00bcd4'];
+/* ---------- ابزار ---------- */
+const $=id=>document.getElementById(id);
+const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function buildOrder(list){
+  const by={};list.forEach(x=>{const k=x.ans.slice().sort().join('+');(by[k]=by[k]||[]).push(x)});
+  Object.values(by).forEach(shuffle);
+  const keys=shuffle(Object.keys(by));const res=[];let i=0;
+  while(res.length<list.length){const k=keys[i%keys.length];if(by[k].length)res.push(by[k].pop());i++}
+  return res;
+}
+/* ---------- صدا (WebAudio) ---------- */
+let AC=null;const ac=()=>AC=AC||new (window.AudioContext||window.webkitAudioContext)();
+function tone(f,d,type='sine',t=0,v=.3){const o=ac().createOscillator(),g=ac().createGain();o.type=type;o.frequency.value=f;
+ g.gain.setValueAtTime(v,ac().currentTime+t);g.gain.exponentialRampToValueAtTime(.001,ac().currentTime+t+d);
+ o.connect(g).connect(ac().destination);o.start(ac().currentTime+t);o.stop(ac().currentTime+t+d)}
+function slide(f1,f2,d,type='sine',t=0,v=.3){const o=ac().createOscillator(),g=ac().createGain();o.type=type;
+ o.frequency.setValueAtTime(f1,ac().currentTime+t);o.frequency.exponentialRampToValueAtTime(f2,ac().currentTime+t+d);
+ g.gain.setValueAtTime(v,ac().currentTime+t);g.gain.exponentialRampToValueAtTime(.001,ac().currentTime+t+d);
+ o.connect(g).connect(ac().destination);o.start(ac().currentTime+t);o.stop(ac().currentTime+t+d)}
+/* صدای بامزهٔ دکمه: «بویونگ» کارتونی با زیر و بمی تصادفی 🎈 */
+const sClick=()=>{const f=380+Math.random()*160;slide(f,f*2.7,.14,'triangle',0,.32);tone(f*4,.07,'sine',.05,.14)};
+const sGood =()=>{tone(523,.15);tone(659,.15,'sine',.13);tone(784,.3,'sine',.26)};
+const sBad  =()=>{tone(170,.35,'sawtooth',0,.2);tone(120,.4,'sawtooth',.1,.2)};
+const sBeep =()=>tone(440,.18,'square',0,.2);
+const sGo   =()=>tone(880,.5,'triangle');
+const sWin  =()=>{[523,659,784,1047,784,1047].forEach((f,i)=>tone(f,.22,'triangle',i*.16))};
+/* ---------- بارگذاری تصویر: اول محلی، بعد گیت‌هاب، بعد جایگزین ---------- */
+const qImg=$('qImg');
+function setSrc(file,fb){$('loader').style.display='block';qImg.dataset.file=file;qImg.dataset.fb=fb||'';qImg.dataset.step='0';qImg.src=file}
+qImg.onload =()=>{$('loader').style.display='none'};
+qImg.onerror=()=>{const f=qImg.dataset.file,s=qImg.dataset.step||'0';
+ if(s==='0'){qImg.dataset.step='1';qImg.src=RAW+f}
+ else if(s==='1'){qImg.dataset.step='2';qImg.src=qImg.dataset.fb||FALLBACK}};
+function preloadAll(){STAGES.forEach(st=>st.words.forEach(w=>{const a=new Image();a.src=w.file;const b=new Image();b.src=RAW+w.file}))}
+/* ---------- وضعیت ---------- */
+let stage=0,order=[],qi=0,selected=new Set(),locked=false,green=0,answered=0,hero='قهرمان',lightsEls=[];
+/* ---------- شروع ---------- */
+$('startBtn').onclick=()=>{ac();sClick();hero=$('heroName').value.trim()||'قهرمان';preloadAll();
+ $('startScreen').classList.add('hidden');$('helpScreen').classList.remove('hidden')};
+$('helpBtn').onclick=()=>{sClick();
+ $('helpScreen').classList.add('hidden');$('gameScreen').classList.remove('hidden');startStage(0)};
+function startStage(i){stage=i;order=buildOrder(STAGES[i].words);qi=0;
+ $('stageBadge').textContent=STAGES[i].name;
+ buildLights();renderQ()}
+function buildLights(){$('lights').innerHTML='';lightsEls=order.map(()=>{const s=document.createElement('span');s.className='light';$('lights').appendChild(s);return s})}
+/* ---------- نمایش سؤال ---------- */
+function renderQ(){const q=order[qi];locked=false;selected.clear();
+ $('card').style.borderColor=PALETTE[(qi+stage*7)%PALETTE.length];
+ setSrc(q.file,q.fb);
+ /* روش فلش‌کارتی دو لایه: لایهٔ زیر کلمهٔ مشکی، لایهٔ رو فقط «ب» قرمز */
+ const redLayer=q.w.split('').map((ch,i,a)=>
+   (ch==='ب'||(ch==='\u0640'&&a[i-1]==='ب'))?`<span class="r">${ch}</span>`:`<span class="t">${ch}</span>`).join('');
+ $('word').innerHTML=`<span class="l1">${q.w}</span><span class="l2" aria-hidden="true">${redLayer}</span>`;
+ $('word').classList.remove('reveal');
+ document.querySelectorAll('#posRow .btn3d').forEach(b=>{b.className=b.className.replace(/ ?(sel|good|bad)/g,'');b.disabled=false});
+ $('checkBtn').disabled=true;$('checkBtn').classList.remove('hidden');$('nextBtn').classList.add('hidden')}
+/* ---------- انتخاب دکمه ---------- */
+document.querySelectorAll('#posRow .btn3d').forEach(b=>b.onclick=()=>{if(locked)return;sClick();
+ const p=b.dataset.pos;
+ if(selected.has(p)){selected.delete(p);b.classList.remove('sel')}else{selected.add(p);b.classList.add('sel')}
+ $('checkBtn').disabled=selected.size===0});
+/* ---------- بررسی جواب ---------- */
+$('checkBtn').onclick=()=>{if(locked)return;locked=true;sClick();
+ const q=order[qi],ansSet=new Set(q.ans);
+ const ok=selected.size===ansSet.size&&[...selected].every(p=>ansSet.has(p));
+ $('word').classList.add('reveal');
+ $('checkBtn').classList.add('hidden');
+ document.querySelectorAll('#posRow .btn3d').forEach(b=>{b.disabled=true;const p=b.dataset.pos;
+  if(ansSet.has(p))b.classList.add('good');
+  else if(selected.has(p))b.classList.add('bad')});
+ if(ok){green++;lightsEls[qi].classList.add('g');sGood();flowerRain()}
+ else{lightsEls[qi].classList.add('r');sBad();$('flash').classList.add('on');setTimeout(()=>$('flash').classList.remove('on'),1000)}
+ answered++;$('pfill').style.width=(answered/TOTAL*100)+'%';
+ const nb=$('nextBtn');nb.classList.remove('hidden');
+ nb.textContent=(qi+1<order.length)?'سؤال بعدی ⬅️':(stage===0?'رفتن به مرحله ۲ 🌟':'دیدن نتیجه 🏆')};
+/* ---------- سؤال بعدی / مرحله بعد ---------- */
+$('nextBtn').onclick=()=>{sClick();qi++;
+ if(qi<order.length)renderQ();
+ else if(stage===0)countdown();
+ else endGame()};
+function countdown(){$('countOverlay').classList.remove('hidden');const n=$('countNum');let c=3;sBeep();n.textContent=fa(c);
+ const iv=setInterval(()=>{c--;
+  if(c>0){n.textContent=fa(c);sBeep()}
+  else{clearInterval(iv);n.textContent='🌟';$('countTxt').textContent='بزن بریم!';sGo();
+   setTimeout(()=>{$('countOverlay').classList.add('hidden');$('countTxt').textContent='آماده باش... مرحله ۲!';
+    document.body.classList.add('stage2');startStage(1)},900)}},1000)}
+/* ---------- افکت گل صورتی ---------- */
+function flowerRain(){
+ for(let i=0;i<28;i++){const s=document.createElement('span');s.className='flower';
+  s.textContent='🌸';
+  s.style.right=Math.random()*100+'vw';s.style.fontSize=(16+Math.random()*22)+'px';
+  s.style.animationDuration=(1.4+Math.random()*1.4)+'s';
+  document.body.appendChild(s);s.addEventListener('animationend',()=>s.remove())}}
+/* ---------- پایان ---------- */
+function endGame(){$('gameScreen').classList.add('hidden');$('endScreen').classList.remove('hidden');
+ $('endTitle').textContent=`آفرین ${hero} جان!`;
+ $('endScore').textContent=`چراغ‌های سبز: ${fa(green)} از ${fa(TOTAL)}`;
+ $('endMsg').textContent=green>=25?'فوق‌العاده بود! تو یک قهرمان واقعی هستی! 🌟':
+   green>=15?'خیلی خوب بود! با تمرین بیشتر موفقیت بیشتری به دست می‌آوری! 💪🏻':
+   'تلاشت عالی بود! با تمرین بیشتر موفقیت بیشتری به دست می‌آوری! 🌈';
+ if(green>=15){flowerRain();setTimeout(flowerRain,700)} sWin()}
+$('againBtn').onclick=()=>{sClick();green=0;answered=0;$('pfill').style.width='0%';
+ document.body.classList.remove('stage2');
+ $('endScreen').classList.add('hidden');$('gameScreen').classList.remove('hidden');startStage(0)};
+</script>
+</body>
+</html>
