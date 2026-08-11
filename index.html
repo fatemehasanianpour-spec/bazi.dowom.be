@@ -8,7 +8,6 @@
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0;min-height:100vh;font-family:'Baloo Bhaijaan 2','Vazirmatn',Tahoma,sans-serif;text-align:center}
-/* ================= پس‌زمینه جنگل متحرک ================= */
 #bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:linear-gradient(#6ec6ff,#bdefff 55%,#d9f7d9);transition:background 1.5s;text-align:right}
 body.stage2 #bg{background:linear-gradient(#5c6bc0,#ff8a65 55%,#ffe0b2)}
 .sun{position:absolute;top:6%;left:7%;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff59d,#ffee58 45%,#fbc02d);box-shadow:0 0 60px 25px rgba(255,235,59,.55);transition:all 1.5s}
@@ -44,7 +43,6 @@ body.stage2 .t2,body.stage2 .t4{transform:scale(1.2)}
 body.stage2 .firefly{opacity:1;animation:tw 2.4s ease-in-out infinite}
 @keyframes tw{0%,100%{transform:translateY(0);opacity:.2}50%{transform:translateY(-14px);opacity:1}}
 .ff1{top:40%;right:15%}.ff2{top:55%;right:70%;animation-delay:-1s}.ff3{top:35%;right:50%;animation-delay:-1.8s}
-/* ================= صفحه‌ها ================= */
 .screen{position:relative;z-index:10;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px;overflow:auto;text-align:center}
 .hidden{display:none!important}
 .box{background:rgba(255,255,255,.92);border-radius:18px;box-shadow:0 8px 20px rgba(0,0,0,.18);text-align:center}
@@ -54,12 +52,10 @@ body.stage2 .firefly{opacity:1;animation:tw 2.4s ease-in-out infinite}
 .panel label{font-weight:700;font-size:1.4rem;color:#37474f;text-align:center;display:block}
 .panel input{font-family:'Baloo Bhaijaan 2','Vazirmatn',Tahoma,sans-serif;font-size:1.2rem;text-align:center;padding:10px;border-radius:14px;border:3px solid #4fc3f7;outline:none;width:80%}
 .designer{font-size:.85rem;padding:4px 14px;color:#455a64;background:rgba(255,255,255,.75)}
-/* ================= صفحه راهنما (بعد از شروع) ================= */
 #helpBox{background:#fff;border:6px dashed #ab47bc;border-radius:22px;width:min(94vw,560px);padding:26px 20px;text-align:center;
 font-weight:700;font-size:clamp(1.3rem,6vw,1.8rem);color:#37474f;line-height:2.1;
 box-shadow:0 12px 26px rgba(0,0,0,.25)}
 #helpBox .sign{display:block;font-weight:800;font-size:2.4em;color:#e91e63;line-height:1.6}
-/* ================= دکمه‌های سه‌بعدی ================= */
 .btn3d{font-family:'Baloo Bhaijaan 2','Vazirmatn',Tahoma,sans-serif;font-weight:700;font-size:1.35rem;color:#fff;border:none;border-radius:18px;cursor:pointer;padding:.5em .8em;text-align:center;
 background:linear-gradient(180deg,var(--lt),var(--md));
 box-shadow:0 6px 0 var(--dk),0 12px 18px rgba(0,0,0,.25),inset 0 2px 0 rgba(255,255,255,.4);
@@ -75,7 +71,6 @@ text-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
 .p-check{--lt:#ba68c8;--md:#8e24aa;--dk:#4a148c;font-size:1.5rem}
 .p-next{--lt:#81c784;--md:#43a047;--dk:#1b5e20;font-size:1.5rem}
 .p-start{--lt:#f06292;--md:#e91e63;--dk:#880e4f;font-size:1.7rem}
-/* ================= HUD بازی ================= */
 #hud{width:min(96vw,560px);display:flex;flex-direction:column;gap:6px;align-items:center;margin-bottom:8px;text-align:center}
 #pbar{width:100%;height:9px;background:rgba(255,255,255,.55);border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.15)}
 #pfill{height:100%;width:0%;border-radius:10px;background:linear-gradient(90deg,#f44336,#ff9800,#ffeb3b,#4caf50,#2196f3,#9c27b0);transition:width .5s}
@@ -84,20 +79,19 @@ text-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
 .light.g{background:#4caf50;border-color:#1b5e20;box-shadow:0 0 6px #4caf50}
 .light.r{background:#e53935;border-color:#b71c1c;box-shadow:0 0 6px #e53935}
 #stageBadge{font-weight:700;font-size:1rem;color:#fff;background:rgba(0,0,0,.3);padding:2px 16px;border-radius:12px;text-align:center}
-/* ================= کارت سؤال ================= */
 #card{background:#fff;border:7px solid #ff7043;border-radius:26px;box-shadow:0 14px 30px rgba(0,0,0,.25);padding:16px;width:min(94vw,420px);display:flex;flex-direction:column;align-items:center;gap:10px;transition:border-color .5s;text-align:center}
 #imgBox{height:min(38vh,300px);width:100%;display:flex;align-items:center;justify-content:center;position:relative}
 #imgBox img{max-height:100%;max-width:100%;object-fit:contain;filter:drop-shadow(0 6px 8px rgba(0,0,0,.2))}
 #loader{position:absolute;font-size:2.4rem;animation:spin 1s linear infinite}
-/* کلمه با فونت بالو — روش دو لایه برای قرمز شدن فقط «ب» */
 #word{font-weight:800;font-size:clamp(3rem,15vw,4.8rem);color:#212121;line-height:1.5;position:relative;display:inline-block;white-space:nowrap;text-align:center}
 #word .l1{position:relative}
 #word .l2{position:absolute;top:0;right:0;left:0;display:none;white-space:nowrap;color:transparent;pointer-events:none}
 #word .l2 .r{color:#e53935}
+/* ✅ کلاس جدید: بریدن خط اتصال «ب» آخر */
+#word .l2 .rf{clip-path:inset(0 .06em 0 0);-webkit-clip-path:inset(0 .06em 0 0)}
 #word.reveal .l2{display:block}
 #posRow{display:flex;gap:10px;justify-content:center;width:100%}
 #posRow .btn3d{flex:1;max-width:110px}
-/* ================= افکت‌ها ================= */
 #flash{position:fixed;inset:0;background:#e53935;opacity:0;pointer-events:none;z-index:50;transition:opacity .25s}
 #flash.on{opacity:.45}
 .flower{position:fixed;top:-6vh;z-index:60;pointer-events:none;animation:fall linear forwards}
@@ -122,7 +116,6 @@ text-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
   <span class="firefly ff1">✨</span><span class="firefly ff2">✨</span><span class="firefly ff3">✨</span>
 </div>
 
-<!-- صفحه شروع -->
 <div class="screen" id="startScreen">
   <div class="box bism">به نام خدا</div>
   <div class="title">اگه گفتی چی هستم؟</div>
@@ -134,7 +127,6 @@ text-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
   <div class="box designer">طراح: خانم حسنیان</div>
 </div>
 
-<!-- صفحه راهنما: بعد از شروع، قبل از سؤال‌ها -->
 <div class="screen hidden" id="helpScreen">
   <div id="helpBox">
     عزیزم خوب نگاه کن ببین نشانه
@@ -145,7 +137,6 @@ text-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
   </div>
 </div>
 
-<!-- صفحه بازی -->
 <div class="screen hidden" id="gameScreen">
   <div id="hud">
     <div id="pbar"><div id="pfill"></div></div>
@@ -165,7 +156,6 @@ text-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
   </div>
 </div>
 
-<!-- صفحه پایان -->
 <div class="screen hidden" id="endScreen">
   <div class="box panel">
     <div id="endEmoji">🏆</div>
@@ -181,29 +171,47 @@ text-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
 <div id="countOverlay" class="hidden"><div id="countTxt">آماده باش... مرحله ۲!</div><div id="countNum">۳</div></div>
 
 <script>
-/* ---------- داده‌ها ---------- */
 const RAW='https://raw.githubusercontent.com/fatemehasanianpour-spec/bazi.dowom.be/main/';
 const APPLE='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><ellipse cx="100" cy="122" rx="72" ry="66" fill="#e53935"/><ellipse cx="76" cy="98" rx="18" ry="26" fill="#ff8a80" opacity=".6"/><rect x="96" y="38" width="9" height="32" rx="4" fill="#795548"/><path d="M105 52 q32 -20 46 6 q-28 16 -46 -6" fill="#66bb6a"/><circle cx="80" cy="116" r="7" fill="#4e342e"/><circle cx="122" cy="116" r="7" fill="#4e342e"/><path d="M80 140 q21 17 42 0" stroke="#4e342e" stroke-width="6" fill="none" stroke-linecap="round"/><circle cx="66" cy="134" r="8" fill="#ff8a80" opacity=".7"/><circle cx="136" cy="134" r="8" fill="#ff8a80" opacity=".7"/></svg>`);
 const FALLBACK='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="70" font-size="70">⭐</text></svg>`);
 const STAGES=[
  {name:'مرحله ۱',words:[
-  {w:'باد',file:'bad.jpg',ans:['اول']},{w:'برگ',file:'barkh.jpg',ans:['اول']},{w:'برف',file:'barf.jpg',ans:['اول']},
-  {w:'بوس',file:'bos.jpg',ans:['اول']},{w:'بو',file:'bo.jpg',ans:['اول']},{w:'بز',file:'boz.jpg',ans:['اول']},
-  {w:'آب\u0640ی',file:'ab.jpg',ans:['وسط']},{w:'ابر',file:'abr.jpg',ans:['وسط']},{w:'سبد',file:'sabad.jpg',ans:['وسط']},
-  {w:'سیب',file:'sib.jpg',fb:APPLE,ans:['آخر']},{w:'تاب',file:'tab.jpg',ans:['آخر']},{w:'چوب',file:'ghob.jpg',ans:['آخر']},
-  {w:'قلب',file:'galb.jpg',ans:['آخر']},{w:'بابا',file:'baba.jpg',ans:['اول','وسط']},{w:'ببر',file:'babr.jpg',ans:['اول','وسط']}
+  {w:'باد',file:'bad.jpg',ans:['اول']},
+  {w:'بَرگ',file:'barkh.jpg',ans:['اول']},
+  {w:'بَرف',file:'barf.jpg',ans:['اول']},
+  {w:'بوس',file:'bos.jpg',ans:['اول']},
+  {w:'بو',file:'bo.jpg',ans:['اول']},
+  {w:'بُز',file:'boz.jpg',ans:['اول']},
+  {w:'آب\u0640ی',file:'ab.jpg',ans:['وسط']},
+  {w:'اَبر',file:'abr.jpg',ans:['وسط']},
+  {w:'سبَد',file:'sabad.jpg',ans:['وسط']},
+  {w:'سیب',file:'sib.jpg',fb:APPLE,ans:['آخر']},
+  {w:'تاب',file:'tab.jpg',ans:['آخر']},
+  {w:'چوب',file:'ghob.jpg',ans:['آخر']},
+  {w:'قلب',file:'galb.jpg',ans:['آخر']},
+  {w:'بابا',file:'baba.jpg',ans:['اول','وسط']},
+  {w:'بَبر',file:'babr.jpg',ans:['اول','وسط']}
  ]},
  {name:'مرحله ۲',words:[
-  {w:'باران',file:'baran.jpg',ans:['اول']},{w:'بنفش',file:'banafsh.jpg',ans:['اول']},{w:'بادکنک',file:'badkonak.jpg',ans:['اول']},
-  {w:'بادام',file:'badam.jpg',ans:['اول']},{w:'بازی',file:'bazi.jpg',ans:['اول']},{w:'بهار',file:'bahar.jpg',ans:['اول']},
-  {w:'آلبالو',file:'albalo.jpg',ans:['وسط']},{w:'آدم برفی',file:'adambarfi.jpg',ans:['وسط']},{w:'گربه',file:'ghorbe.jpg',ans:['وسط']},
-  {w:'فوتبال',file:'fotbal.jpg',ans:['وسط']},{w:'جوراب',file:'jorab.jpg',ans:['آخر']},{w:'کتاب',file:'ketab.jpg',ans:['آخر']},
-  {w:'خواب',file:'khab.jpg',ans:['آخر']},{w:'آفتاب',file:'aftab.jpg',ans:['آخر']},{w:'بادبادک',file:'badbadak.jpg',ans:['اول','وسط']}
+  {w:'باران',file:'baran.jpg',ans:['اول']},
+  {w:'بَنفش',file:'banafsh.jpg',ans:['اول']},
+  {w:'بادکنک',file:'badkonak.jpg',ans:['اول']},
+  {w:'بادام',file:'badam.jpg',ans:['اول']},
+  {w:'بازی',file:'bazi.jpg',ans:['اول']},
+  {w:'بَهار',file:'bahar.jpg',ans:['اول']},
+  {w:'آلبالو',file:'albalo.jpg',ans:['وسط']},
+  {w:'آدم برفی',file:'adambarfi.jpg',ans:['وسط']},
+  {w:'گربه',file:'ghorbe.jpg',ans:['وسط']},
+  {w:'فوتبال',file:'fotbal.jpg',ans:['وسط']},
+  {w:'جوراب',file:'jorab.jpg',ans:['آخر']},
+  {w:'کتاب',file:'ketab.jpg',ans:['آخر']},
+  {w:'خواب',file:'khab.jpg',ans:['آخر']},
+  {w:'آفتاب',file:'aftab.jpg',ans:['آخر']},
+  {w:'بادبادک',file:'badbadak.jpg',ans:['اول','وسط']}
  ]}
 ];
 const TOTAL=STAGES[0].words.length+STAGES[1].words.length;
 const PALETTE=['#ff5252','#ff9800','#ffc107','#4caf50','#2196f3','#9c27b0','#e91e63','#00bcd4'];
-/* ---------- ابزار ---------- */
 const $=id=>document.getElementById(id);
 const fa=n=>String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
@@ -214,7 +222,6 @@ function buildOrder(list){
   while(res.length<list.length){const k=keys[i%keys.length];if(by[k].length)res.push(by[k].pop());i++}
   return res;
 }
-/* ---------- صدا (WebAudio) ---------- */
 let AC=null;const ac=()=>AC=AC||new (window.AudioContext||window.webkitAudioContext)();
 function tone(f,d,type='sine',t=0,v=.3){const o=ac().createOscillator(),g=ac().createGain();o.type=type;o.frequency.value=f;
  g.gain.setValueAtTime(v,ac().currentTime+t);g.gain.exponentialRampToValueAtTime(.001,ac().currentTime+t+d);
@@ -223,14 +230,12 @@ function slide(f1,f2,d,type='sine',t=0,v=.3){const o=ac().createOscillator(),g=a
  o.frequency.setValueAtTime(f1,ac().currentTime+t);o.frequency.exponentialRampToValueAtTime(f2,ac().currentTime+t+d);
  g.gain.setValueAtTime(v,ac().currentTime+t);g.gain.exponentialRampToValueAtTime(.001,ac().currentTime+t+d);
  o.connect(g).connect(ac().destination);o.start(ac().currentTime+t);o.stop(ac().currentTime+t+d)}
-/* صدای بامزهٔ دکمه: «بویونگ» کارتونی با زیر و بمی تصادفی 🎈 */
 const sClick=()=>{const f=380+Math.random()*160;slide(f,f*2.7,.14,'triangle',0,.32);tone(f*4,.07,'sine',.05,.14)};
 const sGood =()=>{tone(523,.15);tone(659,.15,'sine',.13);tone(784,.3,'sine',.26)};
 const sBad  =()=>{tone(170,.35,'sawtooth',0,.2);tone(120,.4,'sawtooth',.1,.2)};
 const sBeep =()=>tone(440,.18,'square',0,.2);
 const sGo   =()=>tone(880,.5,'triangle');
 const sWin  =()=>{[523,659,784,1047,784,1047].forEach((f,i)=>tone(f,.22,'triangle',i*.16))};
-/* ---------- بارگذاری تصویر: اول محلی، بعد گیت‌هاب، بعد جایگزین ---------- */
 const qImg=$('qImg');
 function setSrc(file,fb){$('loader').style.display='block';qImg.dataset.file=file;qImg.dataset.fb=fb||'';qImg.dataset.step='0';qImg.src=file}
 qImg.onload =()=>{$('loader').style.display='none'};
@@ -238,9 +243,7 @@ qImg.onerror=()=>{const f=qImg.dataset.file,s=qImg.dataset.step||'0';
  if(s==='0'){qImg.dataset.step='1';qImg.src=RAW+f}
  else if(s==='1'){qImg.dataset.step='2';qImg.src=qImg.dataset.fb||FALLBACK}};
 function preloadAll(){STAGES.forEach(st=>st.words.forEach(w=>{const a=new Image();a.src=w.file;const b=new Image();b.src=RAW+w.file}))}
-/* ---------- وضعیت ---------- */
 let stage=0,order=[],qi=0,selected=new Set(),locked=false,green=0,answered=0,hero='قهرمان',lightsEls=[];
-/* ---------- شروع ---------- */
 $('startBtn').onclick=()=>{ac();sClick();hero=$('heroName').value.trim()||'قهرمان';preloadAll();
  $('startScreen').classList.add('hidden');$('helpScreen').classList.remove('hidden')};
 $('helpBtn').onclick=()=>{sClick();
@@ -253,19 +256,43 @@ function buildLights(){$('lights').innerHTML='';lightsEls=order.map(()=>{const s
 function renderQ(){const q=order[qi];locked=false;selected.clear();
  $('card').style.borderColor=PALETTE[(qi+stage*7)%PALETTE.length];
  setSrc(q.file,q.fb);
- /* روش فلش‌کارتی دو لایه: لایهٔ زیر کلمهٔ مشکی، لایهٔ رو فقط «ب» قرمز */
- const redLayer=q.w.split('').map((ch,i,a)=>
-   (ch==='ب'||(ch==='\u0640'&&a[i-1]==='ب'))?`<span class="r">${ch}</span>`:`<span class="t">${ch}</span>`).join('');
+ const marks = /[\u064B-\u065F\u0670]/;
+ let redLayer = '';
+ let lastBaseChar = '';
+ for (let i = 0; i < q.w.length; i++) {
+   const ch = q.w[i];
+   if (marks.test(ch)) {
+     continue;
+   }
+   if (ch === 'ب') {
+     // تشخیص «ب» آخر: آیا بعد از این «ب» حرف اصلی دیگری هست؟
+     let isFinal = true;
+     for (let j = i + 1; j < q.w.length; j++) {
+       if (!marks.test(q.w[j])) {
+         isFinal = false;
+         break;
+       }
+     }
+     // اگر «ب» آخر باشد، کلاس rf اضافه می‌شود (برای بریدن خط اتصال)
+     redLayer += `<span class="${isFinal ? 'r rf' : 'r'}">${ch}</span>`;
+     lastBaseChar = 'ب';
+     continue;
+   }
+   if (ch === '\u0640' && lastBaseChar === 'ب') {
+     redLayer += `<span class="r">${ch}</span>`;
+     continue;
+   }
+   redLayer += `<span class="t">${ch}</span>`;
+   lastBaseChar = ch;
+ }
  $('word').innerHTML=`<span class="l1">${q.w}</span><span class="l2" aria-hidden="true">${redLayer}</span>`;
  $('word').classList.remove('reveal');
  document.querySelectorAll('#posRow .btn3d').forEach(b=>{b.className=b.className.replace(/ ?(sel|good|bad)/g,'');b.disabled=false});
  $('checkBtn').disabled=true;$('checkBtn').classList.remove('hidden');$('nextBtn').classList.add('hidden')}
-/* ---------- انتخاب دکمه ---------- */
 document.querySelectorAll('#posRow .btn3d').forEach(b=>b.onclick=()=>{if(locked)return;sClick();
  const p=b.dataset.pos;
  if(selected.has(p)){selected.delete(p);b.classList.remove('sel')}else{selected.add(p);b.classList.add('sel')}
  $('checkBtn').disabled=selected.size===0});
-/* ---------- بررسی جواب ---------- */
 $('checkBtn').onclick=()=>{if(locked)return;locked=true;sClick();
  const q=order[qi],ansSet=new Set(q.ans);
  const ok=selected.size===ansSet.size&&[...selected].every(p=>ansSet.has(p));
@@ -279,7 +306,6 @@ $('checkBtn').onclick=()=>{if(locked)return;locked=true;sClick();
  answered++;$('pfill').style.width=(answered/TOTAL*100)+'%';
  const nb=$('nextBtn');nb.classList.remove('hidden');
  nb.textContent=(qi+1<order.length)?'سؤال بعدی ⬅️':(stage===0?'رفتن به مرحله ۲ 🌟':'دیدن نتیجه 🏆')};
-/* ---------- سؤال بعدی / مرحله بعد ---------- */
 $('nextBtn').onclick=()=>{sClick();qi++;
  if(qi<order.length)renderQ();
  else if(stage===0)countdown();
@@ -290,14 +316,12 @@ function countdown(){$('countOverlay').classList.remove('hidden');const n=$('cou
   else{clearInterval(iv);n.textContent='🌟';$('countTxt').textContent='بزن بریم!';sGo();
    setTimeout(()=>{$('countOverlay').classList.add('hidden');$('countTxt').textContent='آماده باش... مرحله ۲!';
     document.body.classList.add('stage2');startStage(1)},900)}},1000)}
-/* ---------- افکت گل صورتی ---------- */
 function flowerRain(){
  for(let i=0;i<28;i++){const s=document.createElement('span');s.className='flower';
   s.textContent='🌸';
   s.style.right=Math.random()*100+'vw';s.style.fontSize=(16+Math.random()*22)+'px';
   s.style.animationDuration=(1.4+Math.random()*1.4)+'s';
   document.body.appendChild(s);s.addEventListener('animationend',()=>s.remove())}}
-/* ---------- پایان ---------- */
 function endGame(){$('gameScreen').classList.add('hidden');$('endScreen').classList.remove('hidden');
  $('endTitle').textContent=`آفرین ${hero} جان!`;
  $('endScore').textContent=`چراغ‌های سبز: ${fa(green)} از ${fa(TOTAL)}`;
